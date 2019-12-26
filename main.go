@@ -1,9 +1,11 @@
 package main
 
 import (
+	"log"
+	"os"
+
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
-	"os"
 )
 
 func main() {
@@ -24,12 +26,17 @@ func main() {
 
 	//get ID of user
 	userParams := &twitter.UserShowParams{ScreenName: "uzumakithegod"}
-	user, _, _ := client.Users.Show(userParams)
+	user, _, err := client.Users.Show(userParams)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// Set up to get access to tweets associated with User ID
-	tweets, _, _ := client.Timelines.UserTimeline(&twitter.UserTimelineParams{
-		UserID: user.ID,
-	})
+	userTweetParams := &twitter.UserTimelineParams{UserID: user.ID}
+	tweets, _, err := client.Timelines.UserTimeline(userTweetParams)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// loop through all tweets
 	for i := 0; i < len(tweets); i++ {

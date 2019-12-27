@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
-	"strings"
 	"time"
 
 	"github.com/dghubble/go-twitter/twitter"
@@ -41,73 +39,19 @@ func main() {
 		log.Fatal(err)
 	}
 
-	//time of tweet creation
-	timeofTweet := tweets[1].CreatedAt
-	timeofTweet2, _ := tweets[0].CreatedAtTime()
-	fmt.Println(timeofTweet2)
-	//	fmt.Println(timeofTweet)
+	timeNow := time.Now()
+	// loop through all tweets
+	for i := 0; i < len(tweets); i++ {
+		timeofTweet, err := tweets[i].CreatedAtTime()
+		if err != nil {
+			log.Fatal(err)
+		}
 
-	//split strng
-	timeofTweetSplitByWhiteSpace := strings.Fields(timeofTweet)
-
-	dayofMonth := timeofTweetSplitByWhiteSpace[2]
-	month := timeofTweetSplitByWhiteSpace[1]
-	year := timeofTweetSplitByWhiteSpace[5]
-
-	date := year + "-" + monthToDate(month) + "-" + dayofMonth
-	//fmt.Println(date)
-
-	layout := "2006-01-02"
-	t, _ := time.Parse(layout, date)
-	t2 := time.Now().UTC()
-
-	difference := t2.Sub(t)
-	fmt.Println(difference)
-
-	//fmt.Println(t.Format("02-Jan-2006"))
-
-	// // loop through all tweets
-	// for i := 0; i < len(tweets); i++ {
-	// 	if tweets[i].CRE
-	// 	client.Statuses.Destroy(tweets[i].ID, nil)
-	// }
-
-	// }
-
-	// func cronJobLondon() {
-	// 	ldn, _ := time.LoadLocation("Europe/London")
-	// 	c := cron.New(cron.WithLocation(ldn))
-	// 	c.AddFunc("* * * * *", func() { fmt.Println("every minute test") })
-
-	// }
-}
-
-func monthToDate(month string) string {
-	switch month {
-	case "Jan":
-		return "01"
-	case "Feb":
-		return "02"
-	case "Mar":
-		return "03"
-	case "Apr":
-		return "04"
-	case "May":
-		return "05"
-	case "June":
-		return "06"
-	case "Jul":
-		return "07"
-	case "Aug":
-		return "08"
-	case "Sep":
-		return "09"
-	case "Oct":
-		return "10"
-	case "Nov":
-		return "11"
-	case "Dec":
-		return "12"
+		// get difference of time now and the time the tweet was created
+		difference := timeNow.Sub(timeofTweet)
+		if difference > time.Hour*120 {
+			client.Statuses.Destroy(tweets[i].ID, nil)
+		}
 	}
-	return "Incorrect month format"
+
 }

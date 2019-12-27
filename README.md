@@ -2,7 +2,7 @@ Checks time of tweet and deletes it once it reaches 5 days in age (can be change
 
 ## Setup:
 
-I run this on an Amazon EC2 instance and have a cron job running saying that every 3rd day, to run the script. 
+I run this on an Amazon EC2 instance and have a cron job running saying that every 5th day, to run the script. 
 Since Go compiles the code when you run "go build x.go" you can point the cron job to run "x" directly.
 
 You will need to have a twitter application setup in order to generate the consumer and access keys. Twitter 

@@ -43,6 +43,8 @@ func main() {
 
 	//time of tweet creation
 	timeofTweet := tweets[1].CreatedAt
+	timeofTweet2, _ := tweets[0].CreatedAtTime()
+	fmt.Println(timeofTweet2)
 	//	fmt.Println(timeofTweet)
 
 	//split strng
@@ -57,7 +59,6 @@ func main() {
 
 	layout := "2006-01-02"
 	t, _ := time.Parse(layout, date)
-	//fmt.Println(t) // 2017-08-31 00:00:00 +0000 UTC
 	t2 := time.Now().UTC()
 
 	difference := t2.Sub(t)
@@ -67,6 +68,7 @@ func main() {
 
 	// // loop through all tweets
 	// for i := 0; i < len(tweets); i++ {
+	// 	if tweets[i].CRE
 	// 	client.Statuses.Destroy(tweets[i].ID, nil)
 	// }
 

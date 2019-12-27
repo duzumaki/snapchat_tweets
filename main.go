@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"strings"
 
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
@@ -38,11 +39,28 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// loop through all tweets
-	for i := 0; i < len(tweets); i++ {
+	//time of tweet creation
+	timeofTweet := tweets[1].CreatedAt
+	//	fmt.Println(timeofTweet)
 
-		// Delete the current tweets iteration
-		client.Statuses.Destroy(tweets[i].ID, nil)
-	}
+	//split strng
+	timeofTweetSplitByWhiteSpace := strings.Fields(timeofTweet)
 
+	date := timeofTweetSplitByWhiteSpace[2]
+	month := timeofTweetSplitByWhiteSpace[1]
+
+	// 	// loop through all tweets
+	// 	for i := 0; i < len(tweets); i++ {
+	// 		// Delete tweet
+	// 		client.Statuses.Destroy(tweets[i].ID, nil)
+	// 	}
+
+	// }
+
+	// func cronJobLondon() {
+	// 	ldn, _ := time.LoadLocation("Europe/London")
+	// 	c := cron.New(cron.WithLocation(ldn))
+	// 	c.AddFunc("* * * * *", func() { fmt.Println("every minute test") })
+
+	// }
 }

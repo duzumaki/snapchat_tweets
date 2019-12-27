@@ -57,7 +57,12 @@ func main() {
 
 	layout := "2006-01-02"
 	t, _ := time.Parse(layout, date)
-	fmt.Println(t) // 2017-08-31 00:00:00 +0000 UTC
+	//fmt.Println(t) // 2017-08-31 00:00:00 +0000 UTC
+	t2 := time.Now().UTC()
+
+	difference := t2.Sub(t)
+	fmt.Println(difference)
+
 	//fmt.Println(t.Format("02-Jan-2006"))
 
 	// // loop through all tweets

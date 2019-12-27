@@ -1,4 +1,4 @@
-Delete all of your tweets every 3rd day (but this can be changed)
+Checks time of tweet and deletes it once it reaches 5 days in age (can be changed)
 
 ## Setup:
 

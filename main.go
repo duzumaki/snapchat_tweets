@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -46,14 +47,17 @@ func main() {
 	//split strng
 	timeofTweetSplitByWhiteSpace := strings.Fields(timeofTweet)
 
-	date := timeofTweetSplitByWhiteSpace[2]
+	dayofMonth := timeofTweetSplitByWhiteSpace[2]
 	month := timeofTweetSplitByWhiteSpace[1]
+	year := timeofTweetSplitByWhiteSpace[0]
 
-	// 	// loop through all tweets
-	// 	for i := 0; i < len(tweets); i++ {
-	// 		// Delete tweet
-	// 		client.Statuses.Destroy(tweets[i].ID, nil)
-	// 	}
+	date := year + "-" + month + "-" + dayofMonth
+	fmt.Println(date)
+
+	// // loop through all tweets
+	// for i := 0; i < len(tweets); i++ {
+	// 	client.Statuses.Destroy(tweets[i].ID, nil)
+	// }
 
 	// }
 
@@ -63,4 +67,34 @@ func main() {
 	// 	c.AddFunc("* * * * *", func() { fmt.Println("every minute test") })
 
 	// }
+}
+
+func monthToDate(month string) string {
+	switch month {
+	case "Jan":
+		return "01"
+	case "Feb":
+		return "02"
+	case "Mar":
+		return "03"
+	case "Apr":
+		return "04"
+	case "May":
+		return "05"
+	case "June":
+		return "06"
+	case "Jul":
+		return "07"
+	case "Aug":
+		return "08"
+	case "Sep":
+		return "09"
+	case "Oct":
+		return "10"
+	case "Nov":
+		return "11"
+	case "Dec":
+		return "12"
+	}
+	return ""
 }

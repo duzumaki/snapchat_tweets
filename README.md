@@ -16,7 +16,7 @@ CONSUMER_ACCESS=xxx
 CONSUMER_SECRET=xxx
 ACCESS_TOKEN=xxx
 ACCESS_SECRET=xx
-0 0 */3 * * /usr/bin/main
+0 0 */5 * * /usr/bin/main
 ```
 
 Where "main" was "main.go". I ran "go build [folder_it's_in]/main.go to output the "main" script

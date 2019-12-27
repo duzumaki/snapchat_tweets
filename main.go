@@ -96,5 +96,5 @@ func monthToDate(month string) string {
 	case "Dec":
 		return "12"
 	}
-	return ""
+	return "Incorrect month format"
 }

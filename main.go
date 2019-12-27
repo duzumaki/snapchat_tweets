@@ -49,10 +49,16 @@ func main() {
 
 	dayofMonth := timeofTweetSplitByWhiteSpace[2]
 	month := timeofTweetSplitByWhiteSpace[1]
-	year := timeofTweetSplitByWhiteSpace[0]
+	year := timeofTweetSplitByWhiteSpace[5]
 
 	date := year + "-" + monthToDate(month) + "-" + dayofMonth
 	fmt.Println(date)
+
+	// input := "2017-08-31"
+	// layout := "2006-01-02"
+	// t, _ := time.Parse(layout, input)
+	// fmt.Println(t) // 2017-08-31 00:00:00 +0000 UTC
+	// fmt.Println(t.Format("02-Jan-2006"))
 
 	// // loop through all tweets
 	// for i := 0; i < len(tweets); i++ {

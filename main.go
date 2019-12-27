@@ -51,7 +51,7 @@ func main() {
 	month := timeofTweetSplitByWhiteSpace[1]
 	year := timeofTweetSplitByWhiteSpace[0]
 
-	date := year + "-" + month + "-" + dayofMonth
+	date := year + "-" + monthToDate(month) + "-" + dayofMonth
 	fmt.Println(date)
 
 	// // loop through all tweets

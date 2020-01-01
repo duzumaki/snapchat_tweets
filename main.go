@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -49,7 +50,8 @@ func main() {
 
 		// get difference of time now and the time the tweet was created
 		difference := timeNow.Sub(timeofTweet)
-		if difference > time.Hour*120 {
+		fmt.Println(difference)
+		if difference > time.Hour*72 {
 			client.Statuses.Destroy(tweets[i].ID, nil)
 		}
 	}

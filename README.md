@@ -1,4 +1,4 @@
-### Current Status: Working
+### Current Status: Working. Youtube video showing how to use this coming soon
 
 Checks time of tweet and deletes it once it reaches 5 days in age (can be changed)
 

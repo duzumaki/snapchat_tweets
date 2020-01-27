@@ -32,17 +32,44 @@ func main() {
 	}
 
 	// Set up to get access to tweets associated with User ID
-	userTweetParams := &twitter.UserTimelineParams{UserID: user.ID}
-	tweets, _, err := client.Timelines.UserTimeline(userTweetParams)
-	if err != nil {
-		log.Fatal(err)
+	// userTweetParams := &twitter.UserTimelineParams{UserID: user.ID}
+	// tweets, _, err := client.Timelines.UserTimeline(userTweetParams)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	likedTweetParams := &twitter.FavoriteListParams{UserID: user.ID, Count: 200}
+	likedTweets, _, _ := client.Favorites.List(likedTweetParams)
+
+	for i := 0; i < len(likedTweets); i++ {
+			destroyParms := &twitter.FavoriteDestroyParams{ID: likedTweets[i].ID}
+			client.Favorites.Destroy(destroyParms)	
 	}
 
-	// loop through all tweets
-	for i := 0; i < len(tweets); i++ {
-
-		// Delete the current tweets iteration
-		client.Statuses.Destroy(tweets[i].ID, nil)
-	}
-
+	// go deleteTweets(tweets, client)
+	// deleteLikes(tweets, client, user)
 }
+
+// func deleteTweets(tweets []twitter.Tweet, client *twitter.Client){
+
+// 	timeNow := time.Now()
+
+// 	for i := 0; i < len(tweets); i++ {
+// 		go func(i int) {
+// 			timeofTweet, err := tweets[i].CreatedAtTime()
+// 			if err != nil{
+// 				log.Fatal(err)
+// 			}
+
+// 	// get difference of time now and the time the tweet was created
+// 			difference := timeNow.Sub(timeofTweet)
+// 			if difference > time.Hour*24 {
+// 				client.Statuses.Destroy(tweets[i].ID, nil)
+// 				}
+// 		}(i)
+// }
+// }
+
+// func deleteLikes(tweets []twitter.Tweet, client *twitter.Client, user *twitter.User){
+
+// }

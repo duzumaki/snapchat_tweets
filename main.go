@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
@@ -44,6 +46,8 @@ func main() {
 	for i := 0; i < len(likedTweets); i++ {
 			destroyParms := &twitter.FavoriteDestroyParams{ID: likedTweets[i].ID}
 			client.Favorites.Destroy(destroyParms)	
+
+
 	}
 
 	// go deleteTweets(tweets, client)
